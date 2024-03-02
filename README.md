@@ -4,4 +4,3 @@ Itinerar:-operații de intrare/ieșire în domeniul analog/digital
 		 -multiplexare date
 		 -protocoale de comunicație:UART,I2C,SPI,PS/2
 Contribuitori:Neag Mihai și Șaldorfean Andrei
-Resurse:
