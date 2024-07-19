@@ -10,6 +10,7 @@ commit:imagine a proiectului
 	git pull ;git pull=git fetch+git merge
 	git remote add origin ' '
 	git push -f ;pt a forta incarcarea codului
+	git push -u origin *nume_branch* ;push pentru un branch diferit de main/master
 	git branch *afisare ramuri
 	git branch *nume ramura noua* ;crearea ramura noua
 	git branch -d *nume branch*; steregere ramura mentionata

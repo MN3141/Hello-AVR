@@ -1,3 +1,4 @@
+Pentru cei ce vor sa foloseasca ATmelStudio:
 1)ATmelStudio>Tools>External Tools:
 	Command:C:\Users\mihai\AppData\Local\Arduino15\packages\arduino\tools\avrdude\6.3.0-arduino17/bin/avrdude.exe
 	Arguments:-C"C:\Users\mihai\AppData\Local\Arduino15\packages\arduino\tools\avrdude\6.3.0-arduino17/etc/avrdude.conf" -v -V -patmega328p -carduino "-PCOM6" -b115200 -D "-Uflash:w:"$(ProjectDir)Debug\$(TargetName).hex":i

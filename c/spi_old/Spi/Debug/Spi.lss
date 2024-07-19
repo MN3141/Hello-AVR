@@ -19,15 +19,15 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY, DEBUGGING
   7 .debug_abbrev 0000064b  00000000  00000000  0000092f  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_line   0000028a  00000000  00000000  00000f7a  2**0
+  8 .debug_line   0000015c  00000000  00000000  00000f7a  2**0
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_frame  00000058  00000000  00000000  00001204  2**2
+  9 .debug_frame  00000058  00000000  00000000  000010d8  2**2
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_str    00000377  00000000  00000000  0000125c  2**0
+ 10 .debug_str    00000347  00000000  00000000  00001130  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_loc    00000049  00000000  00000000  000015d3  2**0
+ 11 .debug_loc    00000049  00000000  00000000  00001477  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_ranges 00000020  00000000  00000000  0000161c  2**0
+ 12 .debug_ranges 00000020  00000000  00000000  000014c0  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -104,11 +104,11 @@ ISR(TIMER1_COMPA_vect){
 	flag =1;
   9e:	81 e0       	ldi	r24, 0x01	; 1
   a0:	90 e0       	ldi	r25, 0x00	; 0
-  a2:	90 93 01 01 	sts	0x0101, r25	; 0x800101 <_edata+0x1>
-  a6:	80 93 00 01 	sts	0x0100, r24	; 0x800100 <_edata>
+  a2:	90 93 01 01 	sts	0x0101, r25	; 0x800101 <__DATA_REGION_ORIGIN__+0x1>
+  a6:	80 93 00 01 	sts	0x0100, r24	; 0x800100 <__DATA_REGION_ORIGIN__>
 	TCNT1=0;
-  aa:	10 92 85 00 	sts	0x0085, r1	; 0x800085 <__DATA_REGION_ORIGIN__+0x25>
-  ae:	10 92 84 00 	sts	0x0084, r1	; 0x800084 <__DATA_REGION_ORIGIN__+0x24>
+  aa:	10 92 85 00 	sts	0x0085, r1	; 0x800085 <__TEXT_REGION_LENGTH__+0x7f8085>
+  ae:	10 92 84 00 	sts	0x0084, r1	; 0x800084 <__TEXT_REGION_LENGTH__+0x7f8084>
 	TIFR1 =2;
   b2:	82 e0       	ldi	r24, 0x02	; 2
   b4:	86 bb       	out	0x16, r24	; 22
@@ -136,20 +136,20 @@ void setup_master(){
   ce:	8b 7f       	andi	r24, 0xFB	; 251
   d0:	80 83       	st	Z, r24
 	TCCR1A = 0;
-  d2:	10 92 80 00 	sts	0x0080, r1	; 0x800080 <__DATA_REGION_ORIGIN__+0x20>
+  d2:	10 92 80 00 	sts	0x0080, r1	; 0x800080 <__TEXT_REGION_LENGTH__+0x7f8080>
 	TCCR1B = 0b00001101;
   d6:	8d e0       	ldi	r24, 0x0D	; 13
-  d8:	80 93 81 00 	sts	0x0081, r24	; 0x800081 <__DATA_REGION_ORIGIN__+0x21>
+  d8:	80 93 81 00 	sts	0x0081, r24	; 0x800081 <__TEXT_REGION_LENGTH__+0x7f8081>
 	TCCR1C = 0;
-  dc:	10 92 82 00 	sts	0x0082, r1	; 0x800082 <__DATA_REGION_ORIGIN__+0x22>
+  dc:	10 92 82 00 	sts	0x0082, r1	; 0x800082 <__TEXT_REGION_LENGTH__+0x7f8082>
 	OCR1A = 15625;
   e0:	89 e0       	ldi	r24, 0x09	; 9
   e2:	9d e3       	ldi	r25, 0x3D	; 61
-  e4:	90 93 89 00 	sts	0x0089, r25	; 0x800089 <__DATA_REGION_ORIGIN__+0x29>
-  e8:	80 93 88 00 	sts	0x0088, r24	; 0x800088 <__DATA_REGION_ORIGIN__+0x28>
+  e4:	90 93 89 00 	sts	0x0089, r25	; 0x800089 <__TEXT_REGION_LENGTH__+0x7f8089>
+  e8:	80 93 88 00 	sts	0x0088, r24	; 0x800088 <__TEXT_REGION_LENGTH__+0x7f8088>
 	TIMSK1 = 2;
   ec:	82 e0       	ldi	r24, 0x02	; 2
-  ee:	80 93 6f 00 	sts	0x006F, r24	; 0x80006f <__DATA_REGION_ORIGIN__+0xf>
+  ee:	80 93 6f 00 	sts	0x006F, r24	; 0x80006f <__TEXT_REGION_LENGTH__+0x7f806f>
 	TIFR1 = 2;
   f2:	86 bb       	out	0x16, r24	; 22
 	
@@ -158,18 +158,18 @@ void setup_master(){
   f6:	84 b9       	out	0x04, r24	; 4
 	
 	UCSR0A = 0;
-  f8:	10 92 c0 00 	sts	0x00C0, r1	; 0x8000c0 <__DATA_REGION_ORIGIN__+0x60>
+  f8:	10 92 c0 00 	sts	0x00C0, r1	; 0x8000c0 <__TEXT_REGION_LENGTH__+0x7f80c0>
 	UCSR0B = 0b00011000;
   fc:	88 e1       	ldi	r24, 0x18	; 24
-  fe:	80 93 c1 00 	sts	0x00C1, r24	; 0x8000c1 <__DATA_REGION_ORIGIN__+0x61>
+  fe:	80 93 c1 00 	sts	0x00C1, r24	; 0x8000c1 <__TEXT_REGION_LENGTH__+0x7f80c1>
 	UCSR0C = 0b00101110;
  102:	8e e2       	ldi	r24, 0x2E	; 46
- 104:	80 93 c2 00 	sts	0x00C2, r24	; 0x8000c2 <__DATA_REGION_ORIGIN__+0x62>
+ 104:	80 93 c2 00 	sts	0x00C2, r24	; 0x8000c2 <__TEXT_REGION_LENGTH__+0x7f80c2>
 	UBRR0 = 103;
  108:	87 e6       	ldi	r24, 0x67	; 103
  10a:	90 e0       	ldi	r25, 0x00	; 0
- 10c:	90 93 c5 00 	sts	0x00C5, r25	; 0x8000c5 <__DATA_REGION_ORIGIN__+0x65>
- 110:	80 93 c4 00 	sts	0x00C4, r24	; 0x8000c4 <__DATA_REGION_ORIGIN__+0x64>
+ 10c:	90 93 c5 00 	sts	0x00C5, r25	; 0x8000c5 <__TEXT_REGION_LENGTH__+0x7f80c5>
+ 110:	80 93 c4 00 	sts	0x00C4, r24	; 0x8000c4 <__TEXT_REGION_LENGTH__+0x7f80c4>
 	
 	sei();
  114:	78 94       	sei
@@ -198,8 +198,8 @@ int main(void)
 	#ifdef MASTER
 	while (1){
 		if(flag){
- 122:	80 91 00 01 	lds	r24, 0x0100	; 0x800100 <_edata>
- 126:	90 91 01 01 	lds	r25, 0x0101	; 0x800101 <_edata+0x1>
+ 122:	80 91 00 01 	lds	r24, 0x0100	; 0x800100 <__DATA_REGION_ORIGIN__>
+ 126:	90 91 01 01 	lds	r25, 0x0101	; 0x800101 <__DATA_REGION_ORIGIN__+0x1>
  12a:	89 2b       	or	r24, r25
  12c:	d1 f3       	breq	.-12     	; 0x122 <main+0xa>
 			UDR0 ='1';
@@ -211,8 +211,8 @@ int main(void)
 			PORTB |= (1 << PORTB2); //set SS
  134:	2a 9a       	sbi	0x05, 2	; 5
 			flag = 0;
- 136:	10 92 01 01 	sts	0x0101, r1	; 0x800101 <_edata+0x1>
- 13a:	10 92 00 01 	sts	0x0100, r1	; 0x800100 <_edata>
+ 136:	10 92 01 01 	sts	0x0101, r1	; 0x800101 <__DATA_REGION_ORIGIN__+0x1>
+ 13a:	10 92 00 01 	sts	0x0100, r1	; 0x800100 <__DATA_REGION_ORIGIN__>
  13e:	f1 cf       	rjmp	.-30     	; 0x122 <main+0xa>
 
 00000140 <_exit>:

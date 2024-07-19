@@ -1,0 +1,13 @@
+Pentru cei ce nu vor sa foloseasca ATmelStudio:
+1) Aflare cai executabile nevoite(avr-gcc,avrasm2,avr-obj,avr-dude).
+    ATmelStudio>Tools>Options>Package configuration
+    ex:E:\atmelstudio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe
+2) Legare cai de variabile de sistem(system variables)
+    Edit system variables>Path:
+        adaugare E:\atmelstudio\7.0\toolchain\avr8\avrassembler
+                %USERPROFILE%\AppData\Local\Arduino15\packages\arduino\tools\avrdude\6.3.0-arduino17\bin\ 
+                E:\atmelstudio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include
+    Edit system variables>Add:
+                E:\atmelstudio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include ;biblioteci
+                iom328p.h defineste pinii
+    Caile vor fi incluse in functie de unde sunt executabilele instalate de fapt.
