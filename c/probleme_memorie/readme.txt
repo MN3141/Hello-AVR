@@ -1,0 +1,1 @@
+Aplicatiile continute in acest director nu au fost proiectate pentru tipuri bine precizate de cipuri de memorie, ci pentru cursul de Interfete si Protocoale de Comunicatie.

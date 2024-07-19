@@ -1,0 +1,34 @@
+branch=pointer
+commit:imagine a proiectului
+	git config --global user.email
+	git config --global user.name
+	git init ;initializare repo
+	git add *fisier* ;adaugare fisiere pentru commit
+	git commit -m 'mesaj' 
+	git fetch ;preluare fisiere din repo-ul remote
+	git merge *branch* imbina ramura curenta cu *branch*
+	git pull ;git pull=git fetch+git merge
+	git remote add origin ' '
+	git push -f ;pt a forta incarcarea codului
+	git branch *afisare ramuri
+	git branch *nume ramura noua* ;crearea ramura noua
+	git branch -d *nume branch*; steregere ramura mentionata
+	git checkout *nume branch* ; comutare spre ramura mentionata
+	git checkout -b *nume branch*;creare ramura noua din main si comutare spre aceasta
+		;practic,executa:git branch *nume branch* \
+				         git checkout *nume branch*
+	git gui ; lansare interfata grafica
+	gitk ; lansare interfata grafica tip arbore
+	git branch *nume ramura noua*
+	git checkout *nume branch* 
+	git checkout -b *nume ramura noua*
+	git branch --set-upstream-to=origin/<*nume ramura*>
+	git status ;status-ul fisierelor
+	git reset --hard head~numar ;pt a reveni la o stare anterioare cu numar pasi inapoi
+	git reflog-vizualizare commit-uri indiferent de stergeri
+	git reset --hard commit_ID ;sare pana la acel commit
+	git log;pt a vizualiza commit-urile
+	gir rm *fisier*;stergere din .git si din memorie
+	git rm *fisier* --cached;stergere din .git,dar NU si din memorie
+	git diff ;vizualizare diferente in cadrul unui workspace
+	git difftool ;vizualizare diferente folosind o varianta de vim
