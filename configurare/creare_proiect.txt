@@ -1,0 +1,5 @@
+Pentru a crea proiectul se va rula scriptul 'create_proj.py' cu urmatorii paramatrii:
+    -nume proiect 
+    -tip proiect (C sau assembly)
+EX: py create_proj.py blink c
+    py create_proj.py foo s
