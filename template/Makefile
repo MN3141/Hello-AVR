@@ -4,7 +4,7 @@ PARTNUMBER      = atmega328p
 # PARTNUMBER      = atmega168
 OUTPUT_FOLDER   = builds/
 TARGET 			= main
-EXTENTION 		= c
+EXTENSION 		= c
 
 #==== AVR dude Config ============================================================
 AVRDUDE 		= avrdude
@@ -26,7 +26,7 @@ AVRDUMP = avr-objcopy
 
 #===== AVR assembler  ============================================================
 ASSEMBLER = avrasm2
-ASMFLAGS = -fI -W+ie -I"C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.3.300\avrasm\inc" -d "C:\Users\andre\Documents\Atmel Studio\7.0\Assembly\Assembly\Debug\Assembly.obj" -I"C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avrassembler\Include"
+ASMFLAGS = -fI -W+ie -I$(avrasm_include) -o $(OUTPUT_FOLDER)$(TARGET).hex  -m $(OUTPUT_FOLDER)$(TARGET).map -l $(OUTPUT_FOLDER)$(TARGET)lss -S $(OUTPUT_FOLDER)$(TARGET).tmp
 
 #===== Terminal  =================================================================
 TERMINAL 		   = plink
@@ -46,7 +46,7 @@ ifeq ($(EXTENTION),c)
 	@$(AVROBJ) -O ihex -j .text -j .data $(OUTPUT_FOLDER)$(TARGET).elf $@
 else 
 	@$(ASSEMBLER) $(ASMFLAGS) -o $@ $(TARGET).s
-	@avr-size -A $@
+	@avr-size -A $@ >> $(OUTPUT_FOLDER)/memory_segments.txt
 endif
 
 $(OUTPUT_FOLDER)$(TARGET).elf: $(OUTPUT_FOLDER)$(TARGET).o

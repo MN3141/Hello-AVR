@@ -12,6 +12,7 @@ Pentru cei ce nu vor sa foloseasca ATmelStudio:
          avr_libs:              E:\atmelstudio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include ;biblioteci
          avr_pins:              E:\atmelstudio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\iom328p.h ;pentru a definii pinii
          avrddude_connf:        %USERPROFILE%/AppData/Local/Arduino15/packages/arduino/tools/avrdude/6.3.0-arduino17/etc/avrdude.conf
+		 avrasm_include:		E:\atmelstudio\7.0\packs\atmel\ATmega_DFP\1.7.374\avrasm\inc ;pentru includerea datelor despre pinii specifici controller-ului
          Aceste variabile de sistem vor fi de folos pentru makefile sau pentru Intellisense folosit de VS Code
     Caile vor fi incluse in functie de locatia instalarii acelor executabile.
     OBS:Pentru unele versiuni de avrdude.conf procesul de compilare nu functioneaza.
