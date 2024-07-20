@@ -4,10 +4,20 @@ Pentru cei ce nu vor sa foloseasca ATmelStudio:
     ex:E:\atmelstudio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe
 2) Legare cai de variabile de sistem(system variables)
     Edit system variables>Path:
-        adaugare E:\atmelstudio\7.0\toolchain\avr8\avrassembler
-                %USERPROFILE%\AppData\Local\Arduino15\packages\arduino\tools\avrdude\6.3.0-arduino17\bin\ 
-                E:\atmelstudio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include
+      adaugare  E:\atmelstudio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin ;compilator+avr-objcopy
+                E:\atmelstudio\7.0\toolchain\avr8\avrassembler ;asamblor
+                %USERPROFILE%\AppData\Local\Arduino15\packages\arduino\tools\avrdude\6.3.0-arduino17\bin\ ; incarcare/preluare cod de pe controller
+                
     Edit system variables>Add:
-                E:\atmelstudio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include ;biblioteci
-                iom328p.h defineste pinii
-    Caile vor fi incluse in functie de unde sunt executabilele instalate de fapt.
+         avr_libs:              E:\atmelstudio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include ;biblioteci
+         avr_pins:              E:\atmelstudio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\iom328p.h ;pentru a definii pinii
+         avrddude_connf:        %USERPROFILE%/AppData/Local/Arduino15/packages/arduino/tools/avrdude/6.3.0-arduino17/etc/avrdude.conf
+         Aceste variabile de sistem vor fi de folos pentru makefile sau pentru Intellisense folosit de VS Code
+    Caile vor fi incluse in functie de locatia instalarii acelor executabile.
+    OBS:Pentru unele versiuni de avrdude.conf procesul de compilare nu functioneaza.
+        Pentru compilare este nevoie ca placa sa fie conectata la sistemul de calcul.
+3) Instalare make:
+	 Utilitarul make se poate procura prin Git BASH, Cygwin sau Chocolatey
+4) Comunicare pe portul serial:
+	 Se va instala PuTTY
+     Edit system variables>Path:C:\Program Files\PuTTY

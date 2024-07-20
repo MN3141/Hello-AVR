@@ -8,13 +8,13 @@ EXTENTION 		= c
 
 #==== AVR dude Config ============================================================
 AVRDUDE 		= avrdude
-# AVR_DUDE_CONF   = C:/Users/andre/AppData/Local/Arduino15/packages/arduino/tools/avrdude/6.3.0-arduino17/etc/avrdude.conf
+AVR_DUDE_CONF   = avrdude_conf
 PROGRAMMER_TYPE = arduino
 PORT 	  	    = COM7
 CONFIG		    = arduino
 BAUD_RATE 	    = 115200
 PROGRAM			= $(OUTPUT_FOLDER)$(TARGET).hex
-ARGS 		    = -p $(PARTNUMBER) -c $(CONFIG) -P $(PORT) -b $(BAUD_RATE) -D -U flash:w:$(PROGRAM):i
+ARGS 		    = -p $(PARTNUMBER) -c $(CONFIG) -P $(PORT) -b $(BAUD_RATE) -D -U flash:w:$(PROGRAM):i -C $(AVR_DUDE_CONF)
 
 #==== AVR gcc config =============================================================
 CXX    = avr-gcc

@@ -14,3 +14,6 @@ Structura:
 Conventii:
     HW/SW: Hardware/Software
     _old: proiecte create folosind aplicatia AtmelStudio
+
+Configurare:
+    Pentru a creea aplicatii exista doua abordari.Fie se poate folosi ATmelStudio (numit acum MicrochipStudio) cu toate utilitarele configurate (in afara de avrdude; vezi configurare>setup_ATmelStudio.txt), fie se pot folosi direct cu acele utilitare in combinatie cu un makefile (vezi configurare>setup_toolchain.txt).
