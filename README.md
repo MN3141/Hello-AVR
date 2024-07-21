@@ -17,3 +17,13 @@ Conventii:
 
 Configurare:
     Pentru a creea aplicatii exista doua abordari.Fie se poate folosi ATmelStudio (numit acum MicrochipStudio) cu toate utilitarele configurate (in afara de avrdude; vezi configurare>setup_ATmelStudio.txt), fie se pot folosi direct cu acele utilitare in combinatie cu un makefile (vezi configurare>setup_toolchain.txt).
+
+Creare proiect:
+    Pentru aceasta s-a pus la dispozitia programatorului un script menit a automatiza acest proces (create_proj.py).
+
+Compilare/Asamblare proiect:
+    In cadrul fiecarui proiect va fi prezent fisierul 'Makefile' menit a automatiza procesele de compilare,asamblare,link-editare....
+    Sunt oferite programatorului urmatoarele comenzi:
+        make: compilare/asamblare proiect
+        make clean: curatare proiect
+        make com: initializare comunicare cu PC-ul pe portul serial 
