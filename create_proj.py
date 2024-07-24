@@ -9,71 +9,139 @@ the script shall default to .c
 import sys
 import os
 
-DEFAULT_TYPE='c'
-ASSEMBLY_DEFAULT_CODE='''start:
-    inc r16
-    rjmp start'''
-C_DEFAULT_CODE='''#include <avr/io.h>
+def get_help():
+   print("Welcome to Hello-AVR project generator !")
+   print("In order to properly create a project input a valid file extension and a name.")
+   print("For example: py "+sys.argv[0]+" .c hello_world")
+   print("Valid file extensions:")
+   print("  .c:C source file")
+   print("  .s:Assembly source file")
 
-int main(void)
-{
- while (1) 
-    {
-    }
-}
-'''
+class GenerateProject: #interface
+    def get_separator_character():
+        pass
 
-project_name='fooname'
-project_type='footype'
-project_dir_path='foodir'
-project_default_code='foocode'
-project_name=sys.argv[1]
-project_type=sys.argv[2]
-root=os.getcwd()
+    def get_project_path(self,project_name):
+        pass
 
-if os.name =='nt':
-    separator_character='\\'
-    #Windows OS
-elif os.name =='posix':
-    separator_character='/'
-    #POSIX based OS
+    def generate_project(self):
+        pass
 
-if (sys.argv[2] !='c') and (sys.argv[2] !='s'): #checking if it is C or assembly
-    project_type=DEFAULT_TYPE
+class Project(GenerateProject):
+    def __init__(self,project_name):
 
-if project_type =='c':
-    project_dir_path=root+separator_character+'c'+separator_character+project_name
-    project_default_code=C_DEFAULT_CODE
-else:
-    project_dir_path=root+separator_character+'asamblare'+separator_character+project_name
-    project_default_code=ASSEMBLY_DEFAULT_CODE
+        self.default_code='Hello foo'
+        self.project_name=project_name
+        self.project_type='foo'
+        self.project_dir=''
 
-if not os.path.exists(project_dir_path): #checking if the project has been created already
-    os.mkdir(project_dir_path)
-    with open(root+separator_character+'template'+separator_character+'Makefile',"r") as f:
-        file_buffer=f.read()
-        f.close()
-    with open(project_dir_path+separator_character+'Makefile',"w") as makefile_copy: #creating a copy for Makefile
-        makefile_copy.write(file_buffer)
-        makefile_copy.close()
+    def get_separator_character(self):
+        if os.name =='nt':
+            separator_character='\\'
+            #Windows OS
+        elif os.name =='posix':
+            separator_character='/'
+            #POSIX based OS
+        return separator_character
     
-    with open(root+separator_character+'template'+separator_character+'.gitignore',"r") as f:
-        file_buffer=f.read()
-        f.close()
-    with open(project_dir_path+separator_character+'.gitignore',"w") as gitignore_copy: #creating a copy for .gitignore
-        gitignore_copy.write(file_buffer)
-        gitignore_copy.close()
+    def get_project_path(self):
+      separator_character=self.get_separator_character()
+      return os.getcwd()+separator_character+self.project_dir+separator_character
     
-    with open(project_dir_path+separator_character+project_name+'.'+project_type,"w") as project_source: #creating the source file
-        project_source.write(project_default_code)
-        gitignore_copy.close()
+    def generate_project(self):
+        
+        '''getting the root and separating character in order to fetch 
+            files from 'template' directory'''
+        root=os.getcwd()
+        separator_character=self.get_separator_character()
+        project_dir_path=self.get_project_path()+self.project_name
 
-    os.mkdir(project_dir_path+separator_character+'.vscode')
-    with open(root+separator_character+'template'+separator_character+'c_cpp_properties.json',"r") as f:
-        file_buffer=f.read()
-        f.close()
-    with open(project_dir_path+separator_character+'.vscode'+separator_character+'c_cpp_properties.json',"w") as properties_copy: #creating a copy for VS Code IntelliSense
-        properties_copy.write(file_buffer)
-        properties_copy.close()
+        if not os.path.exists(project_dir_path): #checking if the project has been created already
+
+            os.mkdir(project_dir_path)
+
+            #Creating the Makefile
+            with open(root+separator_character+'template'+separator_character+'Makefile',"r") as f:
+                file_buffer=f.read()
+                f.close()
+            with open(project_dir_path+separator_character+'Makefile','w') as makefile_copy:
+                makefile_copy.write(file_buffer)
+                makefile_copy.close()
+
+            #Creating the .gitignore file
+            with open(root+separator_character+'template'+separator_character+'.gitignore',"r") as f:
+                file_buffer=f.read()
+                f.close()
+            with open(project_dir_path+separator_character+'.gitignore',"w") as gitignore_copy:
+                gitignore_copy.write(file_buffer)
+                gitignore_copy.close()
+
+            #Creating the .vscode folder for IntelliSense
+            os.mkdir(project_dir_path+separator_character+'.vscode')
+            with open(root+separator_character+'template'+separator_character+'c_cpp_properties.json',"r") as f:
+                file_buffer=f.read()
+                f.close()
+            with open(project_dir_path+separator_character+'.vscode'+separator_character+'c_cpp_properties.json',"w") as properties_copy:
+                    properties_copy.write(file_buffer)
+                    properties_copy.close()
+
+            #Creating the source file
+            with open(project_dir_path+separator_character+self.project_name+'.'+self.project_type,"w") as project_source:
+                project_source.write(self.default_code)
+                gitignore_copy.close()
+
+        else:
+            print("Project already exists!")
+    
+class CProject(Project):
+    def __init__(self,project_name):
+        super().__init__(project_name)
+        self.default_code='''#include <avr/io.h>
+        int main(void)
+        {
+        while (1) 
+            {
+            }
+        }
+        '''
+        self.project_type='c'
+        self.project_name=project_name
+        self.project_dir='c'
+
+class AssemblyProject(Project):        
+
+    def __init__(self,project_name):
+        super().__init__(project_name)
+        self.default_code='''start:
+        inc r16
+        rjmp start'''
+        self.project_type='s'
+        self.project_name=project_name
+        self.project_dir='asamblare'
+
+if(len(sys.argv)==1):
+    print("Error: no target file")
+    print("Use py "+sys.argv[0]+' help in order to get more info')
 else:
-    print("Project already exists!")
+    if 'help' in sys.argv:
+        get_help()
+    elif '.c' in sys.argv:
+        sys.argv.remove('.c')
+        if(len(sys.argv)==1):
+            print("Error: please also offer a project name")
+        else:
+            project=CProject(sys.argv[1])
+            project.generate_project()
+            print("Project created succesfully!")
+    elif '.s' in sys.argv:
+        sys.argv.remove('.s')
+        if(len(sys.argv)==1):
+            print("Error: please also offer a project name")
+        else:
+            project=AssemblyProject(sys.argv[1])
+            project.generate_project()
+            print("Project created succesfully!")
+    else:
+        print("Error: no valid inputs")
+        print("Please use the help section in order to use the proper format.")
+        print("py "+sys.argv[0]+" help")
