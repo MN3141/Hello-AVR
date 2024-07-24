@@ -1,7 +1,10 @@
 branch=pointer
 commit:imagine a proiectului
-	git config --global user.email
-	git config --global user.name
+	git config --global user.email ;afisare mail global 
+	git config --global user.name ; afisare nume global 
+	git config --global user.name 'NUME' ;setare nume global
+	git config --local user.name 'NUME' ;setare nume local repo-ului 
+	git config --global core.editor 'nano -w' ;setare nano ca editor de text implicit
 	git init ;initializare repo
 	git add *fisier* ;adaugare fisiere pentru commit
 	git commit -m 'mesaj' 
@@ -15,7 +18,7 @@ commit:imagine a proiectului
 	git branch *nume ramura noua* ;crearea ramura noua
 	git branch -d *nume branch*; steregere ramura mentionata
 	git checkout *nume branch* ; comutare spre ramura mentionata
-	git checkout -b *nume branch*;creare ramura noua din main si comutare spre aceasta
+	git checkout -b *nume branch* ;creare ramura noua din main si comutare spre aceasta
 		;practic,executa:git branch *nume branch* \
 				         git checkout *nume branch*
 	git gui ; lansare interfata grafica
