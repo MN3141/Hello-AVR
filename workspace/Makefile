@@ -8,7 +8,7 @@ EXTENSION 		= c
 
 #==== AVR dude Config ============================================================
 AVRDUDE 		= avrdude
-AVR_DUDE_CONF   = avrdude_conf
+AVR_DUDE_CONF   = ${avrdude_conf}
 PROGRAMMER_TYPE = arduino
 PORT 	  	    = COM7
 CONFIG		    = arduino
@@ -41,7 +41,7 @@ all: clean $(OUTPUT_FOLDER)$(TARGET).hex
 	@$(AVRDUDE) $(ARGS)
 
 $(OUTPUT_FOLDER)$(TARGET).hex:
-ifeq ($(EXTENTION),c)
+ifeq ($(EXTENSION),c)
 	@$(MAKE) $(OUTPUT_FOLDER)$(TARGET).elf
 	@$(AVROBJ) -O ihex -j .text -j .data $(OUTPUT_FOLDER)$(TARGET).elf $@
 else 

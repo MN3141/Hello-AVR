@@ -1,11 +1,11 @@
 GCC=GNU C Compiler
 GCC contine preprocesor,compilator,asamblor si link-editor
 Comenzi:
-	gcc sursa.c ;produce un fisier executabil
-	gcc -E sursa.c  ;generare fisier oferit de preprocesor
-	gcc -S sursa.c  ;creare cod sursa in limbaj de asamblare 
-	gcc -c sursa.c  ;genereaza doar fisierul obiect,nu si cel executabil
-	gcc sursa.c  -o *nume_fisier_executabil* ;genereaza fisierul executabil cu numele ales
-	gcc sursa.c -I*cale_fisier_antet* ;include fisiere de tip *.h
-	gcc sursa.c --coverage ;generare fisiere pentru code coverage(ccov)
-	gcov ;generare raport pentru code coverage
+	avr-gcc sursa.c ;produce un fisier executabil
+	avr-gcc -E sursa.c  ;generare fisier oferit de preprocesor
+	avr-gcc -S sursa.c  ;creare cod sursa in limbaj de asamblare 
+	avr-gcc -c sursa.c  ;genereaza doar fisierul obiect,nu si cel executabil
+	avr-gcc sursa.c  -o *nume_fisier_executabil* ;genereaza fisierul executabil cu numele ales
+	avr-gcc sursa.c -I*cale_fisier_antet* ;include fisiere de tip *.h
+	avr-gcc sursa.c --coverage ;generare fisiere pentru code coverage(ccov)
+	avr-gcov ;generare raport pentru code coverage

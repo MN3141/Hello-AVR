@@ -3,7 +3,8 @@
         {
             "name": "Win32",
             "includePath": [
-                "${workspaceFolder}/**"
+                "${workspaceFolder}/**",
+				"${avr_libs}/**"
             ],
             "defines": [
                 "_DEBUG",

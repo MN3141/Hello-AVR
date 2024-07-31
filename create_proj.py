@@ -10,8 +10,8 @@ import sys
 import os
 
 def get_help():
-   print("Welcome to Hello-AVR project generator !")
-   print("In order to properly create a project input a valid file extension and a name.")
+   print("Welcome to Hello-AVR project generator!")
+   print("In order to properly create a project, enter a valid file extension and a name.")
    print("For example: py "+sys.argv[0]+" .c hello_world")
    print("Valid file extensions:")
    print("  .c:C source file")
@@ -51,7 +51,7 @@ class Project(GenerateProject):
     def generate_project(self):
         
         '''getting the root and separating character in order to fetch 
-            files from 'template' directory'''
+            files from 'workspace' directory'''
         root=os.getcwd()
         separator_character=self.get_separator_character()
         project_dir_path=self.get_project_path()+self.project_name
@@ -61,7 +61,7 @@ class Project(GenerateProject):
             os.mkdir(project_dir_path)
 
             #Creating the Makefile
-            with open(root+separator_character+'template'+separator_character+'Makefile',"r") as f:
+            with open(root+separator_character+'workspace'+separator_character+'Makefile',"r") as f:
                 file_buffer=f.read()
                 f.close()
             with open(project_dir_path+separator_character+'Makefile','w') as makefile_copy:
@@ -69,7 +69,7 @@ class Project(GenerateProject):
                 makefile_copy.close()
 
             #Creating the .gitignore file
-            with open(root+separator_character+'template'+separator_character+'.gitignore',"r") as f:
+            with open(root+separator_character+'workspace'+separator_character+'.gitignore',"r") as f:
                 file_buffer=f.read()
                 f.close()
             with open(project_dir_path+separator_character+'.gitignore',"w") as gitignore_copy:
@@ -78,7 +78,7 @@ class Project(GenerateProject):
 
             #Creating the .vscode folder for IntelliSense
             os.mkdir(project_dir_path+separator_character+'.vscode')
-            with open(root+separator_character+'template'+separator_character+'c_cpp_properties.json',"r") as f:
+            with open(root+separator_character+'workspace'+separator_character+'c_cpp_properties.json',"r") as f:
                 file_buffer=f.read()
                 f.close()
             with open(project_dir_path+separator_character+'.vscode'+separator_character+'c_cpp_properties.json',"w") as properties_copy:
@@ -86,7 +86,7 @@ class Project(GenerateProject):
                     properties_copy.close()
 
             #Creating the source file
-            with open(project_dir_path+separator_character+self.project_name+'.'+self.project_type,"w") as project_source:
+            with open(project_dir_path+separator_character+'main'+'.'+self.project_type,"w") as project_source:
                 project_source.write(self.default_code)
                 gitignore_copy.close()
 
@@ -97,15 +97,19 @@ class CProject(Project):
     def __init__(self,project_name):
         super().__init__(project_name)
         self.default_code='''#include <avr/io.h>
-        int main(void)
-        {
+
+    int main(void)
+
+    {
+
         while (1) 
             {
+
             }
-        }
+
+    }
         '''
         self.project_type='c'
-        self.project_name=project_name
         self.project_dir='c'
 
 class AssemblyProject(Project):        
@@ -116,7 +120,6 @@ class AssemblyProject(Project):
         inc r16
         rjmp start'''
         self.project_type='s'
-        self.project_name=project_name
         self.project_dir='asamblare'
 
 if(len(sys.argv)==1):
