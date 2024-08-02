@@ -64,3 +64,6 @@ clean:
 
 com:
 	@$(TERMINAL) $(TERMINAL_ARGS)
+
+analyse: $(TARGET).c
+	@cppcheck --enable=all --suppress=missingIncludeSystem --language=c --checkers-report=static_analysis_report.txt $(TARGET).c

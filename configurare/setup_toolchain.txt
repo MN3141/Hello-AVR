@@ -22,3 +22,6 @@ Pentru cei ce nu vor sa foloseasca ATmelStudio:
 4) Comunicare pe portul serial:
 	 Se va instala PuTTY
      Edit system variables>Path:C:\Program Files\PuTTY
+5) Rulare analiza cod:
+	Se va instala Cppcheck apoi se va adauga calea acestei aplicatii in PATH.
+	Edit system variables>Path:C:\Program Files\Cppcheck
