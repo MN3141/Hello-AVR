@@ -1,8 +1,10 @@
 #include <avr/io.h>
+#include <avr/iom328p.h>
 
 int main(){
-  DDRD = (1<<2);
+
   while(1){
-    PORTD ^= (1<<2);
+
   }
+  return 0;
 }
