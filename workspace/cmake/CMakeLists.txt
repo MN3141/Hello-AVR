@@ -1,7 +1,5 @@
-set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
-cmake_minimum_required(VERSION 3.13)
-project(memories)
-
+cmake_minimum_required(VERSION 3.15)
+project(memories C)
 include(cmake/AvrToolChain.cmake)
 
 file(GLOB SOURCES "src/*.c")
@@ -51,10 +49,10 @@ endfunction()
 add_custom_target(
   flash
   DEPENDS hex_target
-  COMMAND ${AVR_DUDE} ${AVR_DUDE_FLAGS} flash:w:${PROJECT_BINARY_DIR}/${PROJECT_NAME}.hex:i
+  COMMAND ${AVR_DUDE} ${AVR_DUDE_FLAGS} flash:w:${PROJECT_BINARY_DIR}/bin/${PROJECT_NAME}.hex:i
 )
-################################### MAIN ##########################################
+# ################################### MAIN ##########################################
 
 GEN_HEX_FILE()
-GET_DISASSEMBLED_FILES()
-GET_PREPROCESSED_FILES()
+# GET_DISASSEMBLED_FILES()
+# GET_PREPROCESSED_FILES()
